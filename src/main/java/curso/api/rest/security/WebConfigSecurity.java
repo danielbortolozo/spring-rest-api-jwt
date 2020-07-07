@@ -15,7 +15,6 @@ import curso.api.rest.service.ImplementacaoUserDetailService;
 
 /*Mapeia URL, enderecos, autoriza ou bloqueia acesso a URL*/
 
-
 @Configuration
 @EnableWebSecurity
 public class WebConfigSecurity extends WebSecurityConfigurerAdapter {

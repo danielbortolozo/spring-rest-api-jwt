@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -83,12 +85,13 @@ public class IndexController {
 	/*Vamos supor que o carregamento de usuário seja um processo lento
 	 * e queremos controlar ele com cache para agilizar o processo*/
 	@GetMapping(value = "/", produces = "application/json")
-	@Cacheable("cacheUsuarios")
+	@CacheEvict(value = "cacheUsuarios", allEntries = true)
+	@CachePut("cacheUsuarios")
 	public ResponseEntity<List<Usuario>> usuarios() throws InterruptedException {
 		
 		 List<Usuario> list = (List<Usuario>) usuRepository.findAll();
 		
-		 Thread.sleep(6000); /*Segura o codigo por 6 segundos*/
+		
          
 		return new ResponseEntity<List<Usuario>>(list, HttpStatus.OK);
 	}

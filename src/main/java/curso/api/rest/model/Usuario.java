@@ -40,6 +40,8 @@ public class Usuario implements UserDetails{
 	
 	private String nome;
 	
+	private String token;
+	
 	@OneToMany(mappedBy = "usuario", orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<Telefone> telefones = new ArrayList<Telefone>();
 	
@@ -64,9 +66,7 @@ public class Usuario implements UserDetails{
 	}
 	public void setLogin(String login) {
 		this.login = login;
-	}
-	
-	
+	}	
 	public String getSenha() {
 		return senha;
 	}
@@ -78,8 +78,13 @@ public class Usuario implements UserDetails{
 	}
 	public void setNome(String nome) {
 		this.nome = nome;
+	}	
+	public String getToken() {
+		return token;
 	}
-	
+	public void setToken(String token) {
+		this.token = token;
+	}
 	public List<Telefone> getTelefones() {
 		return telefones;
 	}

@@ -48,20 +48,4 @@ public class JWTLoginFilter extends AbstractAuthenticationProcessingFilter {
 	   new JWTTokenAutenticationService().addAuthentication(response, authResult.getName());
 	
 	}
-	
-	
-	
-	
-
-	
-	
-	
 }
-
-
-
-
-
-
-
-

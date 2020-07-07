@@ -26,17 +26,6 @@ public class JwtApiAutenticationFilter extends GenericFilterBean {
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 		
 		/*Continua o processo*/
-		chain.doFilter(request, response);
-		
+		chain.doFilter(request, response);		
 	}
-
-	
-	
-	
 }
-
-
-
-
-
-
