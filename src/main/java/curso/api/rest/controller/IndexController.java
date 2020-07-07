@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import curso.api.rest.model.Usuario;
+import curso.api.rest.model.UsuarioDTO;
 import curso.api.rest.repository.UsuarioRepository;
 
 
@@ -75,11 +76,11 @@ public class IndexController {
 	
 	
 	@GetMapping(value = "/{id}", produces = "application/json")
-	public ResponseEntity<Usuario> init(@PathVariable(value = "id") Long id) {
+	public ResponseEntity<UsuarioDTO> init(@PathVariable(value = "id") Long id) {
 		
 		Optional<Usuario> usuario = usuRepository.findById(id);
 		
-		return  new ResponseEntity<Usuario>(usuario.get(), HttpStatus.OK);
+		return  new ResponseEntity<UsuarioDTO>(new UsuarioDTO(usuario.get()), HttpStatus.OK);
 	}
 	
 	/*Vamos supor que o carregamento de usuário seja um processo lento
@@ -89,9 +90,7 @@ public class IndexController {
 	@CachePut("cacheUsuarios")
 	public ResponseEntity<List<Usuario>> usuarios() throws InterruptedException {
 		
-		 List<Usuario> list = (List<Usuario>) usuRepository.findAll();
-		
-		
+		 List<Usuario> list = (List<Usuario>) usuRepository.findAll();	
          
 		return new ResponseEntity<List<Usuario>>(list, HttpStatus.OK);
 	}
